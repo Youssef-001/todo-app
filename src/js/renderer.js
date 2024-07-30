@@ -19,10 +19,10 @@ function Renderer(){
             todoElement.classList.add('todo');
             let todoInput = document.createElement('input');
             todoInput.type = 'checkbox';
-            todoInput.id = todo.getTitle();
+            todoInput.id = todo.title;
             let todoLabel = document.createElement('label');
-            todoLabel.textContent = todo.getTitle();
-            todoLabel.htmlFor = todo.getTitle();
+            todoLabel.textContent = todo.title;
+            todoLabel.htmlFor = todo.title;
 
             let todoDelete = document.createElement('button');
             todoDelete.textContent = 'Delete';
@@ -31,6 +31,7 @@ function Renderer(){
             todoElement.appendChild(todoLabel);
             todoList.appendChild(todoElement);
             todoElement.appendChild(todoDelete);
+            todoElement.id = todo.id;
 
 
 
@@ -47,9 +48,10 @@ function Renderer(){
         projects.forEach(project => {
             let projectElement = document.createElement('button');
             projectElement.classList.add('project-button');
-            projectElement.innerHTML = project.getProjectTitle();
-
+            projectElement.innerHTML = project.title;
+            projectElement.id = project.id;
             ProjectList.appendChild(projectElement);
+
 
 
         })
@@ -63,12 +65,15 @@ function formRenderer()
         document.querySelector('.div-form').classList.remove('hidden');
         addTodo.classList.add('hidden');
     });
-
-    
-
 }
 
-    return {renderTodos,renderProjects,formRenderer};
+
+function renderProject(project){
+    document.querySelector('.project-name').innerHTML = project.title;
+    renderTodos(project.todos);
+}
+
+    return {renderTodos,renderProjects,formRenderer, renderProject};
 
 }
 

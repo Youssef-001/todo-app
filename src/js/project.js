@@ -2,6 +2,7 @@ function Project(){
     let todos = [];
     let title = '';
     let description = '';
+    let projectID =  Date.now();
 
     function getTodos(){
         return todos;
@@ -9,6 +10,7 @@ function Project(){
 
     function addTodo(todo){
         todos.push(todo);
+        
     }
 
     function deleteTodo(deletedTodo){
@@ -17,20 +19,24 @@ function Project(){
 
     
 
-    function setProjectTitle(newTitle){
+    function setTitle(newTitle){
         title = newTitle;
     }
 
-    function setProjectDescription(newDescription){
+    function setDescription(newDescription){
         description = newDescription;
     }
 
-    function getProjectTitle(){
+    function getTitle(){
         return title;
     }
 
-    function getProjectDescription(){
+    function getDescription(){
         return description;
+    }
+
+    function getID(){
+        return projectID;
     }
 
 
@@ -38,10 +44,11 @@ function Project(){
         getTodos: getTodos,
         addTodo: addTodo,
         deleteTodo: deleteTodo,
-        setProjectTitle: setProjectTitle,
-        setProjectDescription: setProjectDescription,
-        getProjectTitle: getProjectTitle,
-        getProjectDescription: getProjectDescription
+        setTitle: setTitle,
+        setDescription: setDescription,
+        getTitle: getTitle,
+        getDescription: getDescription,
+        getID: getID,
     }
 
 }

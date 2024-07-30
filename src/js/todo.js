@@ -6,6 +6,9 @@ function Todo(){
     let todoDescription = '';
     let todoPriority  = 0;
     let todoState = false;
+    let todoId = Date.now();
+    let parentProject = document.querySelector(".project-name").innerHTML;
+    let dueDate;
 
     function getTitle(){
         return todoTitle;
@@ -35,8 +38,26 @@ function Todo(){
         todoState =!todoState;
     }
 
+    function setDate(newDate){
+        dueDate = newDate;
+    }
+
+    function getDate(){
+        return dueDate;
+    }
+
     function getState(){
         return todoState;
+    }
+
+    function getProject()
+    {
+        return parentProject;
+    }
+
+    function getID()
+    {
+        return todoId;
     }
 
     return {
@@ -47,7 +68,11 @@ function Todo(){
         setPriority: setPriority,
         getPriority: getPriority,
         toggleState: toggleState,
-        getState: getState
+        getState: getState,
+        getID: getID,
+        getProject: getProject,
+        getDate: getDate,
+        setDate: setDate
     }
 
 }

@@ -1,3 +1,8 @@
+// Put in local storage as object of project and todos
+
+
+
+
 
 import projectController from './js/controller'
 import Project from './js/project'
@@ -9,86 +14,110 @@ import style from'./styles/style.css'
 
 import icon from './styles/plus-box.svg';
 
+import captureData from './js/form-data.js';
 
+let renderer = new Renderer();
 let controller = new projectController();
+let ProjectDefault = new Project();
 
 
-let ProjectTest = new Project();
-
-ProjectTest.name = "Test Project";
-ProjectTest.description = "yoooooooo!";
-
-controller.addProject(ProjectTest);
+ProjectDefault.setTitle('My Project');
+ProjectDefault.setDescription('A default project');
 
 
-console.log(controller.getProjects())
+
 
 let todo1 = new Todo();
-todo1.setTitle('breakfast');
-todo1.setDescription('eggs');
+
+todo1.setTitle('Brush teeth');
+
+todo1.setDescription('Brush your teeth with a toothbrush');
+
+todo1.setPriority(1);
+
+
 
 let todo2 = new Todo();
-todo2.setTitle('study');
-todo2.setDescription('Javascript');
 
-ProjectTest.addTodo(todo1);
-ProjectTest.addTodo(todo2);
+todo2.setTitle('Solve LeetCode problems');
 
-let todo4 = new Todo();
-todo4.setTitle("coffee");
-ProjectTest.addTodo(todo4);
+todo2.setDescription('Solve LeetCode problems to improve your programming skills');
 
+todo2.setPriority(2);
 
+todo2.setDate('2024/8/2');
 
+ProjectDefault.addTodo(todo1);
 
-console.log("Project Test todos are: " , ProjectTest.getTodos());
-let renderer = new Renderer();
+ProjectDefault.addTodo(todo2);
 
-renderer.renderTodos(ProjectTest.getTodos());
+controller.addProject(ProjectDefault);
 
+function factoryTodo(todo){
+    return {
+        title: todo.getTitle(),
+        description: todo.getDescription(),
+        priority: todo.getPriority(),
+        date: todo.getDate(),
+        completed: todo.getState(),
+        id: todo.getID()
+    }
+}
 
+function factoryProject(project){
+    return {
+        title: project.getTitle(),
+        description: project.getDescription(),
+        todos: project.getTodos().map(factoryTodo),
+        id: project.getTitle()
+    }
+}
 
-// ProjectTest.getTodos().forEach(todo => {
-//     console.log(todo.getTitle());
-//     console.log(todo.getDescription());
-// })
-
-let Project2 = new Project();
-
-
-Project2.setProjectTitle("seecond project");
-
-
-
-controller.addProject(Project2);
-
-console.log("project 2 title is:", Project2.getProjectTitle());
-ProjectTest.setProjectTitle("hello world");
-renderer.renderProjects(controller.getProjects());
-
+console.log(factoryTodo(todo2));
 
 
-// controller.deleteProject(Project2);
-
-let todo3 = new Todo();
-todo3.setTitle('read')
-todo3.setDescription('quran');
-todo3.setPriority(3);
-
-ProjectTest.addTodo(todo3);
-
-console.log("projects: ", controller.getProjects())
-console.log("Todos", ProjectTest.getTodos()[2].getState());
+console.log(factoryProject(ProjectDefault));
 
 
-let formRnederer = renderer.formRenderer();
+
+let testProject = new Project();
+testProject.setTitle("test Project");
+controller.addProject(testProject);
+
+let projectsList = [];
+
+controller.getProjects().forEach((project) => projectsList.push((factoryProject(project))))
 
 
-let submitButton = document.querySelector('.submit');
+renderer.renderProjects(projectsList);
 
-submitButton.addEventListener('click', (e) => {
-    let newTodo = new Todo();
-    newTodo.setTitle(document.querySelector('.task').innerHTML);
-    newTodo.setDescription(document.querySelector('.description').innerHTML);
-    
-})
+
+document.querySelector('.project-name').innerHTML = ProjectDefault.getTitle();
+
+ let defaultTodos = [];
+
+
+ let todo3 = new Todo();
+todo3.setTitle("todo 3");
+testProject.addTodo(todo3);
+
+
+
+ProjectDefault.getTodos().forEach((todo) => defaultTodos.push(factoryTodo(todo)))
+
+
+
+
+
+controller.getProjects().forEach((project) => localStorage.setItem(project.getTitle(), JSON.stringify(factoryProject(project))));
+
+
+renderer.renderTodos(defaultTodos);
+
+
+
+document.querySelector('.projects').addEventListener('click', (e) => {
+    console.log(e.target);
+    console.log(JSON.parse(localStorage.getItem((e.target.id))))
+    renderer.renderProject(JSON.parse(localStorage.getItem((e.target.id))));
+});
