@@ -51,7 +51,12 @@ ProjectDefault.addTodo(todo1);
 
 ProjectDefault.addTodo(todo2);
 
-controller.addProject(ProjectDefault);
+// controller.addProject(ProjectDefault);
+
+if (localStorage.getItem(ProjectDefault.getTitle()) == null)
+    {
+    localStorage.setItem(ProjectDefault.getTitle(), JSON.stringify(factoryProject(ProjectDefault)));
+    }
 
 function factoryTodo(todo){
     return {
@@ -60,7 +65,7 @@ function factoryTodo(todo){
         priority: todo.getPriority(),
         date: todo.getDate(),
         completed: todo.getState(),
-        id: todo.getID()
+        id: todo.getCounter()
     }
 }
 
@@ -86,7 +91,13 @@ controller.addProject(testProject);
 
 let projectsList = [];
 
-controller.getProjects().forEach((project) => projectsList.push((factoryProject(project))))
+// controller.getProjects().forEach((project) => projectsList.push((factoryProject(project)))) // get them from localStorage
+
+for (let i = 0; i < localStorage.length; i++)
+    {
+        let key = localStorage.key(i);
+        projectsList.push( JSON.parse(localStorage.getItem(key)));
+    }
 
 
 renderer.renderProjects(projectsList);
@@ -103,17 +114,26 @@ testProject.addTodo(todo3);
 
 
 
+
+
 ProjectDefault.getTodos().forEach((todo) => defaultTodos.push(factoryTodo(todo)))
 
 
 
+// controller.getProjects().forEach((project) => localStorage.setItem(project.getTitle(), JSON.stringify(factoryProject(project))));
 
 
-controller.getProjects().forEach((project) => localStorage.setItem(project.getTitle(), JSON.stringify(factoryProject(project))));
 
 
-renderer.renderTodos(defaultTodos);
+function objectTodos(){
+    let todosArray = [];
+    let title = ProjectDefault.getTitle();
+    let defaultTodos = JSON.parse(localStorage.getItem(title));
+    todosArray = defaultTodos.todos;
 
+     return todosArray;
+}
+renderer.renderTodos(objectTodos());
 
 
 document.querySelector('.projects').addEventListener('click', (e) => {
@@ -121,3 +141,15 @@ document.querySelector('.projects').addEventListener('click', (e) => {
     console.log(JSON.parse(localStorage.getItem((e.target.id))))
     renderer.renderProject(JSON.parse(localStorage.getItem((e.target.id))));
 });
+
+
+renderer.formRenderer();
+
+renderer.projectFormRender();
+
+let getData = new captureData();
+
+
+
+
+export default factoryTodo;

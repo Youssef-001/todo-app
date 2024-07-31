@@ -1,4 +1,4 @@
-
+let todoCounter = 0;
 
 function Todo(){
 
@@ -9,6 +9,8 @@ function Todo(){
     let todoId = Date.now();
     let parentProject = document.querySelector(".project-name").innerHTML;
     let dueDate;
+    todoCounter++;
+    let todoCounter2 = todoCounter+1;
 
     function getTitle(){
         return todoTitle;
@@ -32,6 +34,11 @@ function Todo(){
 
     function setPriority(newPriority){
         todoPriority = newPriority;
+    }
+
+    function getCounter()
+    {
+        return todoCounter2;
     }
 
     function toggleState(){
@@ -72,7 +79,8 @@ function Todo(){
         getID: getID,
         getProject: getProject,
         getDate: getDate,
-        setDate: setDate
+        setDate: setDate,
+        getCounter: getCounter
     }
 
 }

@@ -16,7 +16,14 @@
         
             </div>
             <button class="add-task">Add task</button>
-            <p id="project-header">My Projects</p>
+            <div class="my-projects">
+                <p id="project-header">My Projects</p>
+                <button type="button" id="project-add-button">
+                    <img src="../src/styles/plus.svg" alt="">
+                </button>
+                
+              
+            </div>
 
             <div class="projects">
                 <ul class="project-list">
@@ -24,6 +31,21 @@
                     <li>Project 2</li>
                 </ul>
             </div>
+
+            <form action="#" id="project-form" class="hidden">
+
+                <div class="name">
+                    <label for="name">Name</label>
+                    <input type="text" id="name">
+
+                </div>
+
+                <div class="project-buttons">
+                    <button type="button" class="add-project">Add</button>
+                    <button type="button" class="cancel-project">Cancel</button>
+                </div>
+
+            </form>
 
         </div>
 

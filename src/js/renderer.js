@@ -19,10 +19,10 @@ function Renderer(){
             todoElement.classList.add('todo');
             let todoInput = document.createElement('input');
             todoInput.type = 'checkbox';
-            todoInput.id = todo.title;
+            todoInput.id = todo.id;
             let todoLabel = document.createElement('label');
             todoLabel.textContent = todo.title;
-            todoLabel.htmlFor = todo.title;
+            todoLabel.htmlFor = todo.id;
 
             let todoDelete = document.createElement('button');
             todoDelete.textContent = 'Delete';
@@ -31,7 +31,7 @@ function Renderer(){
             todoElement.appendChild(todoLabel);
             todoList.appendChild(todoElement);
             todoElement.appendChild(todoDelete);
-            todoElement.id = todo.id;
+            // todoElement.id = todo.id;
 
 
 
@@ -67,13 +67,30 @@ function formRenderer()
     });
 }
 
+function projectFormRender()
+{   
+    let projectAdd = document.querySelector('.add-project');
+    let projectForm = document.querySelector('#project-form');
+    let project_add_button = document.querySelector('#project-add-button');
+    let cancelButton = document.querySelector('.cancel-project');
+    project_add_button.addEventListener('click',(e) => {
+        projectForm.classList.remove('hidden');
+
+    });
+
+    cancelButton.addEventListener('click',(e) => {
+        projectForm.classList.add('hidden')});
+
+
+}
+
 
 function renderProject(project){
     document.querySelector('.project-name').innerHTML = project.title;
     renderTodos(project.todos);
 }
 
-    return {renderTodos,renderProjects,formRenderer, renderProject};
+    return {renderTodos,renderProjects,formRenderer, renderProject,projectFormRender};
 
 }
 

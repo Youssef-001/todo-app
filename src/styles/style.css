@@ -168,3 +168,55 @@ textarea{
 .hidden{
     display:none;
 }
+
+button img{
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    
+    
+}
+
+.my-projects button{
+    background-color:#4A90E2;
+    border: none;
+    
+}
+
+.my-projects{
+    display:flex;
+    font-size: 1.5rem;
+}
+
+
+#project-form img{
+
+    width: 1.2rem;
+    height: 1.2rem;
+
+}
+
+/* #project-form button{
+    
+    background-color:#4A90E2 ;
+    border: none;
+} */
+
+
+
+#project-form{
+    border:none;
+
+}
+
+#project-form input{
+    border-radius: 12px;
+    height: 1.1rem;
+    padding: 10px;
+    font-size: 1.1rem;
+}
+
+.project-buttons{
+    display:flex;
+    gap: 10px;
+}
