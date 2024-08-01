@@ -15,18 +15,28 @@ function Renderer(){
         todoElement.classList.add('todo-item');
 
         todos.forEach(todo => {
+            
             let todoElement = document.createElement('div');
             todoElement.classList.add('todo');
             let todoInput = document.createElement('input');
-            todoInput.type = 'checkbox';
+            todoInput.type = 'radio';
             todoInput.id = todo.id;
+           
             let todoLabel = document.createElement('label');
             todoLabel.textContent = todo.title;
             todoLabel.htmlFor = todo.id;
+            console.log(todo);
+
+            if (todo.state == true)
+                {
+                    todoInput.checked = true;
+                    todoLabel.innerHTML =`<del> ${todo.title}</del>`;
+                }
 
             let todoDelete = document.createElement('button');
             todoDelete.textContent = 'Delete';
             todoDelete.classList.add('todo-delete');
+            todoDelete.id = todo.id;
             todoElement.appendChild(todoInput);
             todoElement.appendChild(todoLabel);
             todoList.appendChild(todoElement);
@@ -49,7 +59,7 @@ function Renderer(){
             let projectElement = document.createElement('button');
             projectElement.classList.add('project-button');
             projectElement.innerHTML = project.title;
-            projectElement.id = project.id;
+            projectElement.id = project.title;
             ProjectList.appendChild(projectElement);
 
 
@@ -65,6 +75,11 @@ function formRenderer()
         document.querySelector('.div-form').classList.remove('hidden');
         addTodo.classList.add('hidden');
     });
+
+    document.querySelector('.cancel').addEventListener('click', (e) => {
+        document.querySelector('.div-form').classList.add('hidden');
+        addTodo.classList.remove('hidden');
+    })
 }
 
 function projectFormRender()

@@ -1,90 +1,26 @@
-let todoCounter = 0;
 
-function Todo(){
 
-    let todoTitle = '';
-    let todoDescription = '';
-    let todoPriority  = 0;
-    let todoState = false;
-    let todoId = Date.now();
-    let parentProject = document.querySelector(".project-name").innerHTML;
-    let dueDate;
-    todoCounter++;
-    let todoCounter2 = todoCounter+1;
+// let todoCounter = 0;
 
-    function getTitle(){
-        return todoTitle;
-    }
 
-    function setTitle(newTitle){
-        todoTitle = newTitle;
-    }
-
-    function getDescription(){
-        return todoDescription;
-    }
-
-    function setDescription(newDescription){
-        todoDescription = newDescription;
-    }
-
-    function getPriority(){
-        return todoPriority;
-    }
-
-    function setPriority(newPriority){
-        todoPriority = newPriority;
-    }
-
-    function getCounter()
-    {
-        return todoCounter2;
-    }
-
-    function toggleState(){
-        todoState =!todoState;
-    }
-
-    function setDate(newDate){
-        dueDate = newDate;
-    }
-
-    function getDate(){
-        return dueDate;
-    }
-
-    function getState(){
-        return todoState;
-    }
-
-    function getProject()
-    {
-        return parentProject;
-    }
-
-    function getID()
-    {
-        return todoId;
-    }
-
+function Todov2(title, description, priority, state, dueDate)
+{
+    // todoCounter++;
+    let id = parseInt(localStorage.getItem('id')) || 0;
+    let newId = id + 1;
+    localStorage.setItem('id', newId);
     return {
-        getTitle: getTitle,
-        setTitle: setTitle,
-        getDescription: getDescription,
-        setDescription: setDescription,
-        setPriority: setPriority,
-        getPriority: getPriority,
-        toggleState: toggleState,
-        getState: getState,
-        getID: getID,
-        getProject: getProject,
-        getDate: getDate,
-        setDate: setDate,
-        getCounter: getCounter
+        title: title,
+        description: description,
+        priority: priority,
+        state: state,
+        dueDate: dueDate,
+        id: newId,
+        
     }
 
 }
 
 
 
-export default Todo;
+export default Todov2;
