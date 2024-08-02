@@ -2,15 +2,18 @@ function checkTodo(){
     let content = document.querySelector('.todos');
 
     content.addEventListener('click', (e) => {
-        if (e.target.type == 'radio')
+        if (e.target.type == 'checkbox')
         {
             console.log(e.target);
             let currentProject = JSON.parse(localStorage.getItem(document.querySelector('.project-name').innerHTML));
             console.log(currentProject.todos);
+            let index = 0;
             for (let i = 0; i < currentProject.todos.length; i++)
             {
                 if (currentProject.todos[i].id == e.target.id){
-                    currentProject.todos[i].state = true;
+                    currentProject.todos[i].state = !(currentProject.todos[i].state);
+                    index = i;
+                    break;
                 }
             }
 
@@ -19,8 +22,14 @@ function checkTodo(){
             // e.target.parentElement.remove();
             // message.innerHTML='<del>helloworld</del>';
             console.log(e.target.parentElement)
-            let originalText = e.target.parentElement.childNodes[1].innerHTML;
+            let originalText = e.target.parentElement.childNodes[1].textContent;
+
+            if (currentProject.todos[index].state  == true)
             e.target.parentElement.childNodes[1].innerHTML = `<del>${originalText}</del>`;
+
+            else
+            e.target.parentElement.childNodes[1].textContent = `${originalText}`;
+
         }
     })
 }

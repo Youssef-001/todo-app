@@ -3,6 +3,7 @@ html,body{
     padding:0;
     margin: 0;
     box-sizing: border-box;
+    background-color: #F5F5F5 ;     
 }
 
 .page-content{
@@ -92,6 +93,7 @@ ul{
     color: #333333;
     position:relative;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
     
 
 }
@@ -137,7 +139,7 @@ ul{
 
 
 form{
-    border: 2px solid black;
+    border: 2px solid grey;
     display:flex;
     flex-direction: column;
     gap: 5px;
@@ -224,6 +226,7 @@ button img{
 
 .div-form{
     margin-top: 1rem;
+    border-radius: 1rem;
 }
 
 .div-form textarea {
@@ -231,6 +234,12 @@ button img{
     padding: 6px;
     font-size: 1rem;
     font-family:Verdana, Geneva, Tahoma, sans-serif
+
+}
+
+.div-form label{
+    font-size: 1.2rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 }
 
@@ -245,3 +254,50 @@ h2{
     font-family:Verdana, Geneva, Tahoma, sans-serif
 
 }
+
+.user-info img{
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+
+}
+
+.user-info{
+    display:flex;
+    gap: 1rem;
+
+}
+
+
+#circle{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+
+}
+
+.todo{
+    display:flex;
+    align-items: center;
+}
+
+.two{
+    background-color: #f48318;
+}
+
+.one{
+    background-color: red;
+}
+
+.three{
+    background-color: blue;
+}
+
+.four{
+    background-color: #90cc8c;
+}
+
+button, label{
+    cursor:pointer;
+}
+

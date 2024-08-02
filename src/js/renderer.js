@@ -19,8 +19,9 @@ function Renderer(){
             let todoElement = document.createElement('div');
             todoElement.classList.add('todo');
             let todoInput = document.createElement('input');
-            todoInput.type = 'radio';
+            todoInput.type = 'checkbox';
             todoInput.id = todo.id;
+            let priority = todo.priority.split(' ')[1];
            
             let todoLabel = document.createElement('label');
             todoLabel.textContent = todo.title;
@@ -30,8 +31,26 @@ function Renderer(){
             if (todo.state == true)
                 {
                     todoInput.checked = true;
-                    todoLabel.innerHTML =`<del> ${todo.title}</del>`;
+                    todoLabel.innerHTML = `<del>${todo.title}</del>`;
                 }
+            
+            let circle = document.createElement('div');
+            circle.id = 'circle';
+            if (priority == '2')
+            {
+                circle.classList.add('two');
+            }
+
+            else if (priority == '1')
+            {
+                circle.classList.add('one');
+            }
+
+            else if (priority == '3')
+            {
+                circle.classList.add('three');
+            }
+            
 
             let todoDelete = document.createElement('button');
             todoDelete.textContent = 'Delete';
@@ -40,6 +59,10 @@ function Renderer(){
             todoElement.appendChild(todoInput);
             todoElement.appendChild(todoLabel);
             todoList.appendChild(todoElement);
+            todoElement.appendChild(circle);
+
+            
+
             todoElement.appendChild(todoDelete);
             // todoElement.id = todo.id;
 

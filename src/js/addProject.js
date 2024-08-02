@@ -26,6 +26,7 @@ addProjectButton.addEventListener('click', (e) => {
 
     renderer.renderProjects(projectArray);
     document.querySelector('#name').value = '';
+    document.querySelector('#project-form').classList.add('hidden');
 
 
 });
