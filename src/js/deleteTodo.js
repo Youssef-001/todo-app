@@ -1,7 +1,7 @@
 function deleteTodo(){
 
 
-let content = document.querySelector('.content');
+const content = document.querySelector('.content');
 
 
 content.addEventListener('click', (e) => {
@@ -10,9 +10,9 @@ content.addEventListener('click', (e) => {
         console.log(e.target);
         e.target.parentElement.remove();
 
-        let currentProject = JSON.parse(localStorage.getItem(document.querySelector('.project-name').innerHTML));
+        const currentProject = JSON.parse(localStorage.getItem(document.querySelector('.project-name').innerHTML));
         console.log(currentProject.todos);
-        let newTodos = currentProject.todos.filter((todo) => {
+        const newTodos = currentProject.todos.filter((todo) => {
             return todo.id != e.target.id;
         })
 

@@ -1,29 +1,32 @@
-// Render tasks
-// Render projects
-
-// Update tasks when add task
-// update project when add new project
 
 function Renderer(){
 
     function renderTodos(todos)
     {
-        let todoList = document.querySelector('.todos');
+        const todoList = document.querySelector('.todos');
         todoList.innerHTML = '';
 
-        let todoElement = document.createElement('div');
+        const todoElement = document.createElement('div');
         todoElement.classList.add('todo-item');
 
         todos.forEach(todo => {
+            console.log(todo);
             
-            let todoElement = document.createElement('div');
+            const todoElement = document.createElement('div');
             todoElement.classList.add('todo');
-            let todoInput = document.createElement('input');
+            const todoInput = document.createElement('input');
             todoInput.type = 'checkbox';
             todoInput.id = todo.id;
-            let priority = todo.priority.split(' ')[1];
+
+            let priority;
+
+            if (typeof todo.priority === 'number'){
+                 priority = todo.priority}
+            else{
+             priority =( todo.priority).split(' ')[1];}
+
            
-            let todoLabel = document.createElement('label');
+            const todoLabel = document.createElement('label');
             todoLabel.textContent = todo.title;
             todoLabel.htmlFor = todo.id;
             console.log(todo);
@@ -34,7 +37,7 @@ function Renderer(){
                     todoLabel.innerHTML = `<del>${todo.title}</del>`;
                 }
             
-            let circle = document.createElement('div');
+            const circle = document.createElement('div');
             circle.id = 'circle';
             if (priority == '2')
             {
@@ -52,7 +55,7 @@ function Renderer(){
             }
             
 
-            let todoDelete = document.createElement('button');
+            const todoDelete = document.createElement('button');
             todoDelete.textContent = 'Delete';
             todoDelete.classList.add('todo-delete');
             todoDelete.id = todo.id;
@@ -64,10 +67,6 @@ function Renderer(){
             
 
             todoElement.appendChild(todoDelete);
-            // todoElement.id = todo.id;
-
-
-
         })
 
     }
@@ -75,11 +74,11 @@ function Renderer(){
 
     function renderProjects(projects)
     {
-        let ProjectList = document.querySelector('.projects');
+        const ProjectList = document.querySelector('.projects');
         ProjectList.innerHTML='';
 
         projects.forEach(project => {
-            let projectElement = document.createElement('button');
+            const projectElement = document.createElement('button');
             projectElement.classList.add('project-button');
             projectElement.innerHTML = project.title;
             projectElement.id = project.title;
@@ -92,14 +91,14 @@ function Renderer(){
 
 function formRenderer()
 {
-    let addTodo = document.querySelector('.add-Todo');
-    addTodo.addEventListener('click',(e) => {
+    const addTodo = document.querySelector('.add-Todo');
+    addTodo.addEventListener('click',() => {
 
         document.querySelector('.div-form').classList.remove('hidden');
         addTodo.classList.add('hidden');
     });
 
-    document.querySelector('.cancel').addEventListener('click', (e) => {
+    document.querySelector('.cancel').addEventListener('click', () => {
         document.querySelector('.div-form').classList.add('hidden');
         addTodo.classList.remove('hidden');
     })
@@ -107,16 +106,15 @@ function formRenderer()
 
 function projectFormRender()
 {   
-    let projectAdd = document.querySelector('.add-project');
-    let projectForm = document.querySelector('#project-form');
-    let project_add_button = document.querySelector('#project-add-button');
-    let cancelButton = document.querySelector('.cancel-project');
-    project_add_button.addEventListener('click',(e) => {
+    const projectForm = document.querySelector('#project-form');
+    const project_add_button = document.querySelector('#project-add-button');
+    const cancelButton = document.querySelector('.cancel-project');
+    project_add_button.addEventListener('click',() => {
         projectForm.classList.remove('hidden');
 
     });
 
-    cancelButton.addEventListener('click',(e) => {
+    cancelButton.addEventListener('click',() => {
         projectForm.classList.add('hidden')});
 
 
@@ -131,9 +129,6 @@ function renderProject(project){
     return {renderTodos,renderProjects,formRenderer, renderProject,projectFormRender};
 
 }
-
-
-
 
 
 export default Renderer;

@@ -1,28 +1,20 @@
-// Put in local storage as object of project and todos
-
-import projectController from './js/controller'
 import Project from './js/project'
 import Todo from './js/todo'
 import checkTodo from './js/checkTodo.js'
-
 import Renderer from './js/renderer.js'
-
 import style from'./styles/style.css'
-
-import icon from './styles/plus-box.svg';
-
 import addTodo from './js/addTodo.js';
 import addProject from './js/addProject.js';
-
 import deleteTodo from './js/deleteTodo.js'
 
-let renderer = new Renderer();
-let controller = new projectController();
-let ProjectDefault = new Project([],"My Project", "Testing project");
+
+
+const renderer = new Renderer();
+const ProjectDefault = new Project([],"My Project", "Testing project");
 
 
 
-let todo1 = new Todo("Test todo", "just testing", 3,false, "2024,8,6");
+const todo1 = new Todo("Test todo", "just testing", 3,false, "2024,8,6");
 ProjectDefault.todos.push(todo1);
 
 
@@ -38,15 +30,14 @@ if (localStorage.getItem('id') == null)
 }
 
 
-let testProject = new Project([], 'testProject', 'testing');
 
 
-let projectsList = [];
+const projectsList = [];
 
 
 for (let i = 0; i < localStorage.length; i++)
     {
-        let key = localStorage.key(i);
+        const key = localStorage.key(i);
         if (key=='id')
         {
             console.log("hello world");
@@ -62,7 +53,7 @@ renderer.renderProjects(projectsList);
 document.querySelector('.project-name').innerHTML = ProjectDefault.title;
 
 
-let localStorageTodos = JSON.parse(localStorage.getItem('My Project'));
+const localStorageTodos = JSON.parse(localStorage.getItem('My Project'));
 console.log(ProjectDefault.todos)
 renderer.renderTodos(localStorageTodos.todos);
 
@@ -78,13 +69,13 @@ renderer.formRenderer();
 
 renderer.projectFormRender();
 
-let add_todo = new addTodo();
+addTodo();
 
-let add_project = new addProject();
+addProject();
 
-let delete_todo = new deleteTodo();
+deleteTodo();
 
-let check_todo = new checkTodo();
+checkTodo();
 
 
 // export default factoryTodo;

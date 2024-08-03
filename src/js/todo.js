@@ -6,8 +6,8 @@
 function Todov2(title, description, priority, state, dueDate)
 {
     // todoCounter++;
-    let id = parseInt(localStorage.getItem('id')) || 0;
-    let newId = id + 1;
+    const id = parseInt(localStorage.getItem('id')) || 0;
+    const newId = id + 1;
     localStorage.setItem('id', newId);
     return {
         title: title,

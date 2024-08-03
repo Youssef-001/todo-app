@@ -1,11 +1,11 @@
 function checkTodo(){
-    let content = document.querySelector('.todos');
+    const content = document.querySelector('.todos');
 
     content.addEventListener('click', (e) => {
         if (e.target.type == 'checkbox')
         {
             console.log(e.target);
-            let currentProject = JSON.parse(localStorage.getItem(document.querySelector('.project-name').innerHTML));
+            const currentProject = JSON.parse(localStorage.getItem(document.querySelector('.project-name').innerHTML));
             console.log(currentProject.todos);
             let index = 0;
             for (let i = 0; i < currentProject.todos.length; i++)
@@ -22,7 +22,7 @@ function checkTodo(){
             // e.target.parentElement.remove();
             // message.innerHTML='<del>helloworld</del>';
             console.log(e.target.parentElement)
-            let originalText = e.target.parentElement.childNodes[1].textContent;
+            const originalText = e.target.parentElement.childNodes[1].textContent;
 
             if (currentProject.todos[index].state  == true)
             e.target.parentElement.childNodes[1].innerHTML = `<del>${originalText}</del>`;
