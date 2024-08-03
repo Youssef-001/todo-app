@@ -5,7 +5,8 @@ export default [
   {
     languageOptions: { globals: globals.browser },
     rules: {
-      'prefer-const': 'error'
+      'prefer-const': 'error',
+      "indent": ["error", 2],
     }
   },
   pluginJs.configs.recommended,

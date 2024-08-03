@@ -2,13 +2,13 @@
 
 
 function Projectv2(todos, title, description){
-    return {
+  return {
 
-        todos: todos,
-        title: title,
-        description: description,
-        projectID: title
-    }
+    todos: todos,
+    title: title,
+    description: description,
+    projectID: title
+  }
 }
 
 export default Projectv2;
